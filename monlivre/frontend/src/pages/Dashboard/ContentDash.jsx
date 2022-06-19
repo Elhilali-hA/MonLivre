@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Nav_dash'
 import ContentDash from '../../components/DashContent'
-import './Pages.css'
+import '../Pages.css'
 
 
 

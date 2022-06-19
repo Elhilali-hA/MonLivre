@@ -24,8 +24,6 @@ const ClientSchema = new mongoose.Schema({
     type: String,
     required: false,
     default: 'client',
-    
-
     },
     created_at: {
         type: Date,

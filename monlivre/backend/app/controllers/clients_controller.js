@@ -31,16 +31,20 @@ class ClientController {
 
     async createclient(req, res) {
         try {
-            const newclients = await models.clients.create(req.body);
             const user = await models.users.create({...req.body, role: 'client' });
 
-            res.status(202).json({
-                status: 'success',
-                data: {
-                    clients: newclients,
-                    clientsInUserTable: user,
-                },
-            });
+            if (user) {
+
+                const newclients = await models.clients.create(req.body);
+    
+                res.status(202).json({
+                    status: 'success',
+                    data: {
+                        clients: newclients,
+                        clientsInUserTable: user,
+                    },
+                });
+            }
         } catch (err) {
             throw new AppException(err, 400);
         }
@@ -70,11 +74,14 @@ class ClientController {
 
     async deleteclient(req, res) {
         try {
+          
           const client = await models.clients.findByIdAndDelete(req.params.id);
+
     
                 res.status(202).json({
                     status: 'success',
                     data: {
+                        user,
                         client,
                     },
                 });

@@ -1,21 +1,25 @@
+import jwt_decode from "jwt-decode";
 import React, { useState } from 'react'
 import { FaBars } from 'react-icons/fa'
-import { AiOutlineClose, AiOutlineUserSwitch  } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineSearch  } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { SidebarData } from './SidebarData';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Navbar.css'
 import { IconContext } from 'react-icons';
 
 
 
 export default function Navbar ()  {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
   const handleLogout = () => {
 
     localStorage.clear();
         window.location.href = '/';
-
   }
+
+  const token = JSON.parse(localStorage.getItem('name'));
+const user = jwt_decode(token)
 
   const showSidebar = () => setSidebar(!sidebar);
   return (
@@ -36,40 +40,28 @@ export default function Navbar ()  {
       <div className="form-group mb-0" >
         <div className="input-group input-group-alternative" >
           <div className="input-group-prepend" style={{width: '90%'}}>
-            <span className="input-group-text" ><i className="fas fa-search" /></span>
+            <span className="input-group-text bg-dark" ><AiOutlineSearch /></span>
           <input  className="form-control w-75 text-white" placeholder="Search" type="text"  style={{backgroundColor: '#222'}}/>
           </div>
           
         </div>
       </div>
     </form>
-    {/* User */}
-    <ul className="navbar-nav align-items-center d-none d-md-flex">
+      <ul className="navbar-nav align-items-center d-none d-md-flex">
       <li className="nav-item dropdown">
-        <a className="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <div className="media align-items-center">
-            <span className="avatar avatar-sm rounded-circle">
-              <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg" />
-            </span>
-            <div className="media-body ml-2 d-none d-lg-block">
-              <span className="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
-            </div>
-          </div>
-        </a>
-        <div className="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-          <div className=" dropdown-header noti-title">
-            <h6 className="text-overflow m-0">Welcome!</h6>
-          </div>
-          <a href="./examples/profile.html" className="dropdown-item">
-            <i className="ni ni-single-02" />
-            <span>My profile</span>
-          </a>
-          <div className="dropdown-divider" />
-          <a href="#!" className="dropdown-item">
-            <i className="ni ni-user-run" />
-            <span>Logout</span>
-          </a>
-        </div>
+   
+     <NavDropdown
+              id="nav-dropdown-dark-example"
+              title={user.name}
+              menuVariant="dark"
+            >
+              <NavDropdown.Item href="#action/3.1">Welcome !</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">My profile</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
+                Log out
+              </NavDropdown.Item>
+            </NavDropdown>
       </li>
     </ul>
   </div>

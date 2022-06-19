@@ -17,22 +17,22 @@ export const SidebarData = [
     icon:  <IoIcons.IoMdPeople />
   },
   {
-    title: 'Owners',
-    path: '/dashboard/owners',
+    title: 'Secretary',
+    path: '/dashboard/secretary',
     cName: 'nav-text',
     icon : <FaIcons.FaUserTie />
     
     
   },
   {
-    title: 'Hotels',
-    path: '/dashboard/hotels',
+    title: 'Admins',
+    path: '/dashboard/admins',
     cName: 'nav-text',
     icon : <FaIcons.FaHotel />
   },
   {
-    title: 'Rooms',
-    path: '/dashboard/rooms',
+    title: 'Books',
+    path: '/dashboard/books',
     cName: 'nav-text',
     icon : <FaIcons.FaBed />
   },
