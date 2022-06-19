@@ -1,6 +1,7 @@
 import React , { useState, useEffect} from 'react'
 import './styles.modules.css'
 import Store from '../../Store'
+import {Link} from 'react-router-dom'
 import {Card} from 'react-bootstrap'
 import axios from "axios";
 
@@ -27,9 +28,9 @@ const clientURL = "http://localhost:5000/api/clients";
 
 
   const description = [
-    {title: 'clients', link: 'go to clients', url: 'clients', color: 'card bg-c-green order-card',icon: <i className="fa fa-thin fa-users f-left"></i>, count: <Store value="clients"  />,lastone: <Store last="client" value="null"  /> },
-     {title: 'secretary', link: 'go to secretary', url: 'secretary', color: 'card bg-c-yellow order-card',icon: <i class="fa fa-thin fa-user-vneck-hair-long"></i>, count: <Store value="secretary"  />,lastone: <Store last="secretary" value="null"  /> }, 
-    //  {title: 'Commandes', link: 'go to Commandes', url: 'commandes', icon:<MdIcons.MdFastfood color="black" size="30"/>, count: <Store value="commands"  />,lastone: <Store last="commands" value="null"  />} , 
+    {title: 'clients', link: 'go to clients', url: '/dashboard/clients', color: 'card bg-c-green order-card',icon: <i className="fa fa-thin fa-users f-left"></i>, count: <Store value="clients"  />,lastone: <Store last="client" value="null"  /> },
+     {title: 'secretary', link: 'go to secretary', url: '/dashboard/secretary', color: 'card bg-c-yellow order-card', icon:  <i class="fa fa-solid fa-user-tie f-left"></i>, count: <Store value="secretary"  />,lastone: <Store last="secretary" value="null"  /> }, 
+     {title: 'Admins', link: 'go to Admins', url: '/dashboard/admins',color: 'card bg-c-blue order-card', icon: <i class="fa fa-solid fa-user-tie f-left"></i>, count: <Store value="admins"  />,lastone: <Store last="admins" value="null"  />} , 
     ]
 
     
@@ -66,6 +67,7 @@ const clientURL = "http://localhost:5000/api/clients";
           <h6 className="m-b-20"> {item.title} </h6>
           <h2 className="text-right"> {item.icon} <span> total : {item.count} </span></h2>
           <p className="m-b-0">Last register :<span className="f-right"> {item.lastone} </span></p>
+          <Link to={item.url}>{item.link}</Link>
         </div>
       </div>
     
