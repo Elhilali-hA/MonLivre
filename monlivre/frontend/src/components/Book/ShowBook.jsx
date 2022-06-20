@@ -68,29 +68,31 @@ function ShowBooks() {
   const handleClose = () => setAdd(false);
   const handleAdd = () => setAdd(true);
 
+  console.log(books)
 
 
 const data = books.map((book, index) => {
+  let src = 'http://localhost:3000/images/' + book.image
   return(
-    <Card key={index}  style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={'http://localhost:5000/books/'+ book.image} />
-  <Card.Body>
-    <Card.Title>{book.title}</Card.Title>
-    <Card.Text>
-    {book.description}
-    </Card.Text>
-    <Card.Text>
-    {book.type}
-    </Card.Text>
-    <Card.Text variant="primary">{book.price}</Card.Text>
+    
+      <div className="card" key={index} style={{width: '18rem'}}>
+  <img className="card-img-top"  src={src} alt="Card image cap" />
+  <div className="card-body">
+    <h5 className="card-title">title : {book.title}</h5>
+    <p className="card-text">{book.description}</p>
+    <p className="card-text">{book.type}</p>
+    <p className="card-text">{book.price}$</p>
+
+    <a href="#" className="btn btn-primary">Reserve</a>
       <Button size="sm"  variant="info" onClick={()=>handleUpdate(book)}>
             <GrIcons.GrUpdate size="10"  />
           </Button>
       <Button size="sm"  variant="danger" onClick={()=> deleteData(book._id)}>
             <BsIcons.BsFillTrashFill size="10"  />
           </Button>
-  </Card.Body>
-</Card>
+  </div>
+</div>
+
     
 
           
@@ -118,6 +120,8 @@ const data = books.map((book, index) => {
           </div>
     
   </div>
+ 
+
 
       <Modal show={Add} onHide={handleClose}>
         <Modal.Header closeButton>

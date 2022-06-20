@@ -10,7 +10,7 @@ import ContentDashboard from './pages/Dashboard/ContentDash';
 import Secretary from './pages/Secretary'
 import Admins from './pages/Admins'
 import Book from './pages/Books'
-
+import Profile from './pages/Profile'
 
 import Clients from './pages/Clients';
 
@@ -37,6 +37,8 @@ function App() {
           <Route path='/dashboard/secretary' component={Secretary} />
           <Route path='/dashboard/admins' component={Admins} />
           <Route path='/dashboard/books' component={Book} />
+          <Route path='/dashboard/profile' component={Profile} />
+
 
 
 

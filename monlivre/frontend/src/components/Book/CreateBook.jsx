@@ -7,9 +7,11 @@ function CreateBook() {
 
   const baseURL = 'http://localhost:5000/api/books'
   const [Add_books, set_addbooks] = useState({
-    email: "",
-    name:"",
-    password:""
+    title: "",
+    description: "",
+    price:"",
+    type: "",
+    image: "",
   })
 
   const [error, setError] = useState("") 
@@ -34,7 +36,7 @@ function CreateBook() {
         error.response.status >= 400 &&
         error.response.status <= 500 
       ){
-        setError('name, email already in use')
+        setError(error)
       }
     }
   }
@@ -42,9 +44,9 @@ function CreateBook() {
 
   return (
     <>
-    <form className="p-2" onSubmit={handleSubmit}>
-  <div className="form-row">
-    <div className="form-group col-md-3">
+    <form className="p-2" onSubmit={handleSubmit} enctype="multipart/form-data">
+  
+    <div className="form-group ">
       <label htmlFor="inputEmail4">title</label>
       <input type="title"
             placeholder='title'
@@ -53,7 +55,7 @@ function CreateBook() {
             value={Add_books.title}
             required className="form-control" id="inputEmail4" />
     </div>
-    <div className="form-group col-md-3">
+    <div className="form-group ">
       <label htmlFor="inputdescription4">description</label>
       <textarea  type="description"
             placeholder="description"
@@ -62,7 +64,7 @@ function CreateBook() {
             value={set_addbooks.description}
             required className="form-control" id="inputdescription4" />
     </div>
-  </div>
+  
   <div className="form-group">
     <label htmlFor="inputprice">Price</label>
     <input type="text"

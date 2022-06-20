@@ -1,5 +1,6 @@
 import models from '../../app/models/index.js';
 import AppException from '../../app/exceptions/AppException.js';
+import fs from 'fs'
 
 class BooksController {
     async getBook(req, res) {
@@ -22,7 +23,7 @@ class BooksController {
             let filter = {};
             if (req.query.title) filter.title = req.query.title;
             if (req.query.price) filter.price = req.query.price;
-            const books = await models.books.find();
+            const books = await models.books.find(filter);
             res.status(202).json({
                 status: 'success',
                 data: {
@@ -37,11 +38,12 @@ class BooksController {
     async createBook(req, res) {
         try {
             let images = []
-            const uploadedImages = req.files
-            console.log(uploadedImages);
-            for (const uploadedImage of uploadedImages) {
+            let uploadedImages = req.files
+            for (let uploadedImage of uploadedImages) {
                 images.push(uploadedImage.filename)
             }
+            console.log(uploadedImages);
+            
             const newBook = await models.books.create({ 
             title: req.body.title,
             price: req.body.price,
@@ -51,12 +53,19 @@ class BooksController {
             image: images,
 
             });
-            res.status(202).json({
-                status: 'success',
-                data: {
-                    Book: newBook,
-                },
-            });
+            newBook.save().then(result =>{
+                res.status(202).json({
+                    status: 'success',
+                    data: {
+                        title: result.title,
+                        price: result.price,
+                        description: result.description,
+                        type: result.type,
+                        status: result.status,
+                        image: result.images,
+                    },
+                });
+            })
         } catch (err) {
             throw new AppException(err, 400);
         }
@@ -64,21 +73,13 @@ class BooksController {
 
     async updateBook(req, res) {
         try {
-            const {title,description,price, type, status} = req.body
-            const books = await models.books.updateOne({ id: req.params.id},{
-                $set: {
-                    title : title ,
-                    description : description ,
-                    price : price,
-                    type: type, 
-                    status: status,   
-                }
-            } ,
-             {
-                new: true,
-                runValidators: true,
-            }    
-                );
+            let images = []
+            const uploadedImages = req.files
+            for (const uploadedImage of uploadedImages) {
+                images.push(uploadedImage.filename)
+            }
+            // const {title,description,price, type, status} = req.body
+            const books = await models.books.updateOne(req.params.id, req.body)
 
             res.status(202).json({
                 status: 'success',

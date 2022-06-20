@@ -1,6 +1,7 @@
 import React , { useState, useEffect} from 'react'
 import './styles.modules.css'
 import Store from '../../Store'
+import * as FaIcons  from "react-icons/fa";
 import {Link} from 'react-router-dom'
 import {Card} from 'react-bootstrap'
 import axios from "axios";
@@ -31,6 +32,8 @@ const clientURL = "http://localhost:5000/api/clients";
     {title: 'clients', link: 'go to clients', url: '/dashboard/clients', color: 'card bg-c-green order-card',icon: <i className="fa fa-thin fa-users f-left"></i>, count: <Store value="clients"  />,lastone: <Store last="client" value="null"  /> },
      {title: 'secretary', link: 'go to secretary', url: '/dashboard/secretary', color: 'card bg-c-yellow order-card', icon:  <i class="fa fa-solid fa-user-tie f-left"></i>, count: <Store value="secretary"  />,lastone: <Store last="secretary" value="null"  /> }, 
      {title: 'Admins', link: 'go to Admins', url: '/dashboard/admins',color: 'card bg-c-blue order-card', icon: <i class="fa fa-solid fa-user-tie f-left"></i>, count: <Store value="admins"  />,lastone: <Store last="admins" value="null"  />} , 
+     {title: 'Books', link: 'go to Books', url: '/dashboard/books',color: 'card bg-c-pink order-card', icon: <FaIcons.FaBook />, count: <Store value="books"  />,lastone: <Store last="books" value="null"  />} , 
+
     ]
 
     

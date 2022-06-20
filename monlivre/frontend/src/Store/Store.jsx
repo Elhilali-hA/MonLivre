@@ -10,14 +10,14 @@ const Store = ({value, last}) => {
     let [clients, setclients] = useState([])
  let [secretary, set_secretary] = useState([])
   let [admins, setadmins] = useState([])
-//   let [commands, set_commands] = useState([])
+  let [books, set_books] = useState([])
 //   let [restaurant, setrestaurant] = useState([])
 
     
     const clientURL = "http://localhost:5000/api/clients";
     const secretaryURL = "http://localhost:5000/api/secretary";
     const adminsURL = "http://localhost:5000/api/admins";
-    // const commandeURL = "http://localhost:3000/api/commandes";
+    const bookURL = "http://localhost:5000/api/books";
     // const restauURL = "http://localhost:3000/api/restaurants";
 
 
@@ -57,15 +57,16 @@ const Store = ({value, last}) => {
         }
 
 
-        // async function getCommandes(){
-  
-        //     await axios.get(commandeURL, { headers: {"Authorization" : `Bearer ${token}`} }).then((res) =>{
-             
-        //      set_commands(res.data.cmd)
-             
-             
-        //    })
-        //    }
+        async function getBooks(){
+          let res = await axios.get(bookURL, { headers: {"Authorization" : `Bearer ${token}`} })
+    let cli = await res.data
+    if(cli){
+        set_books(cli.data.books);
+        
+        
+    }
+
+           }
 
         //    async function getRestau(){
         //     let res = await axios.get(restauURL, { headers: {"Authorization" : `Bearer ${token}`} })
@@ -78,14 +79,12 @@ const Store = ({value, last}) => {
         //     }
 
 
-       
-
     const counter = {
 
         clients: clients.length,
         secretary: secretary.length,
         admins: admins.length,
-        // commands: commands.length,
+        books: books.length,
         // restaurant: restaurant.length,
 
     }
@@ -94,7 +93,7 @@ const Store = ({value, last}) => {
 
     const lastclient = clients.slice(-1)
     const lastsecretary = secretary.slice(-1)
-    // const lastcommande = commands.slice(-1)
+    const lastbook = books.slice(-1)
     const lastadmin = admins.slice(-1)
     // const lastreastau = clients.slice(-1)
 
@@ -104,7 +103,7 @@ const Store = ({value, last}) => {
         client : getlast_clientname(),
         secretary: getlast_secretary(),
         admins: getlast_admin(), 
-        // commands: getlast_command(), 
+        books: getlast_book(), 
         // restaurant: getlast_restau()
     }
 
@@ -126,14 +125,14 @@ const Store = ({value, last}) => {
     }
 
     
-    // function getlast_command() {
+    function getlast_book() {
 
-    //     for (let i = 0; i < lastcommande.length; i++) {            
-    //     return lastcommande[i].repas_id.name
-    //     }
+        for (let i = 0; i < lastbook.length; i++) {            
+        return lastbook[i].title
+        }
 
-    // }
-    // console.log(getlast_command())
+    }
+
     function getlast_admin() {
 
         for (let i = 0; i < lastadmin.length; i++) {            
@@ -158,10 +157,10 @@ const Store = ({value, last}) => {
         getClients()
         getSecretary()
         getadmins()
-        // getCommandes()
+        getBooks()
         // getRestau()
 
-    },[])
+    }, [])
 
 
 

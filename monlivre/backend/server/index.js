@@ -4,7 +4,6 @@ import Router from '../routes/index.js';
 import cors from 'cors'
 
 
-
 class Server {
     constructor() {
         this.router = Router;
@@ -16,6 +15,7 @@ class Server {
         this.app.use(cors())
         this._setupRoutes();
         this._listen();
+        this.app.use("/images", express.static("./images"));
 
     }
 

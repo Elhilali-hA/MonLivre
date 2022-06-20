@@ -34,7 +34,7 @@ const user = jwt_decode(token)
           </Link>
   <div className="container col-md-8">
     
-    <a className="h4 mb-0 mr-4 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+    <a className="h4 mb-0 mr-4 text-white text-uppercase d-none d-lg-inline-block" href="/dashboard">Dashboard</a>
     
     <form className="navbar-search navbar-search-dark form-inline d-none d-md-flex ml-lg-auto" style={{width: '250px'}}>
       <div className="form-group mb-0" >

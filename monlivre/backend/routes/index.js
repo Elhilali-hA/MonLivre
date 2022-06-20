@@ -13,6 +13,7 @@ class Router {
     this._handlePageNotFound();
     this._handleExceptions();
     app.use(this.router);
+    
   }
 
   _catchError(handler) {
