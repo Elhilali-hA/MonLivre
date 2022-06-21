@@ -17,7 +17,11 @@ const OrderSchema = new mongoose.Schema({
         required: [true, 'please choose type of order'],
         enum:['buy', 'reserve']
     },
-    date:{
+    date_from:{
+        type: Date,
+        required: true,
+    },
+    date_to: {
         type: Date,
         required: true,
     },

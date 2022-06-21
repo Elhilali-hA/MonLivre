@@ -22,6 +22,7 @@ import ProtoctedAdminRoutes from './components/Admin/ProtectedRouts.js';
 import BookSecretary from './pages/Secretary/Books'
 import Clientsecretary from './pages/Secretary/Clients';
 import SecretaryDash from './pages/Secretary/Dashboard/ContentDash';
+import Reservation from './pages/Secretary/Reservation'
 import PageNotFound from './pages/PageNotFound'
 
 
@@ -66,6 +67,8 @@ function App() {
           <SecretaryRoutes path="/secretary/dashboard/books" role={user.role} component={BookSecretary} />
           <SecretaryRoutes path="/secretary/dashboard/profile" role={user.role} component={ProfileSecretary} />
           <SecretaryRoutes path="/secretary/dashboard/clients" role={user.role} component={Clientsecretary} />
+          <SecretaryRoutes path="/secretary/dashboard/reservation" role={user.role} component={Reservation} />
+
 
 
 
