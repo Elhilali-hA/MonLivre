@@ -14,6 +14,13 @@ const AdminSchema = new mongoose.Schema({
     required: [true, 'user must have a email'],
     unique: true,
   },
+  age:{
+    type: Number,
+    required: [true, 'enter your age']
+  },
+  adress: {
+    type: String,
+  },
   password: {
     type: String,
     required: [true, 'user must have a password'],

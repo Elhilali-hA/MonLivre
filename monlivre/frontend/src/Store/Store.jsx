@@ -11,14 +11,14 @@ const Store = ({value, last}) => {
  let [secretary, set_secretary] = useState([])
   let [admins, setadmins] = useState([])
   let [books, set_books] = useState([])
-//   let [restaurant, setrestaurant] = useState([])
+
 
     
     const clientURL = "http://localhost:5000/api/clients";
     const secretaryURL = "http://localhost:5000/api/secretary";
     const adminsURL = "http://localhost:5000/api/admins";
     const bookURL = "http://localhost:5000/api/books";
-    // const restauURL = "http://localhost:3000/api/restaurants";
+    
 
 
 
@@ -68,15 +68,7 @@ const Store = ({value, last}) => {
 
            }
 
-        //    async function getRestau(){
-        //     let res = await axios.get(restauURL, { headers: {"Authorization" : `Bearer ${token}`} })
-        //     let cli = await res.data
-        //     if(cli){
-        //         setrestaurant(cli.restaurants);
-                
-                
-        //     }
-        //     }
+        
 
 
     const counter = {
@@ -85,7 +77,7 @@ const Store = ({value, last}) => {
         secretary: secretary.length,
         admins: admins.length,
         books: books.length,
-        // restaurant: restaurant.length,
+        
 
     }
 
@@ -95,7 +87,6 @@ const Store = ({value, last}) => {
     const lastsecretary = secretary.slice(-1)
     const lastbook = books.slice(-1)
     const lastadmin = admins.slice(-1)
-    // const lastreastau = clients.slice(-1)
 
 
 
@@ -104,7 +95,6 @@ const Store = ({value, last}) => {
         secretary: getlast_secretary(),
         admins: getlast_admin(), 
         books: getlast_book(), 
-        // restaurant: getlast_restau()
     }
 
 
@@ -140,13 +130,7 @@ const Store = ({value, last}) => {
         }
 
     }
-    // function getlast_restau() {
-
-    //     for (let i = 0; i < lastreastau.length; i++) {            
-    //     return lastreastau[i].name
-    //     }
-
-    // }
+   
 
     
 
@@ -158,7 +142,7 @@ const Store = ({value, last}) => {
         getSecretary()
         getadmins()
         getBooks()
-        // getRestau()
+       
 
     }, [])
 

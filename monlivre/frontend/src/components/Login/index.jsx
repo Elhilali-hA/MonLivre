@@ -1,12 +1,8 @@
-
 import React, { useState } from 'react';
-
 import jwt_decode from "jwt-decode";
-
-import { Link, } from 'react-router-dom';
 import './styles.modules.css';
 import  axios  from 'axios' ;
-// import { useResolvedPath } from 'react-router';
+
 const Signup = () => {
     const [data, setData] = useState({
         email: "",
@@ -32,7 +28,11 @@ const Signup = () => {
             window.location = "/" 
         
           }if(user.role==="admin"){
-            window.location = "/dashboard" 
+            window.location = "/admin/dashboard" 
+         
+          }
+          if(user.role==="secretary"){
+            window.location = "/secretary/dashboard" 
          
           }
       
@@ -115,16 +115,16 @@ const Signup = () => {
       <div className="row align-items-center justify-content-md-between">
         <div className="col-md-6">
           <div className="copyright">
-            © 2022 <a href target="_blank">MonLivre</a>.
+            © 2022 <a>MonLivre</a>.
           </div>
         </div>
         <div className="col-md-6">
           <ul className="nav nav-footer justify-content-end">
             <li className="nav-item">
-              <a href className="nav-link" target="_blank">About Us</a>
+              <a className="nav-link" target="_blank">About Us</a>
             </li>
             <li className="nav-item">
-              <a href className="nav-link" target="_blank">License</a>
+              <a  className="nav-link" target="_blank">License</a>
             </li>
           </ul>
         </div>

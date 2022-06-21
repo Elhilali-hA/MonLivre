@@ -26,6 +26,13 @@ const secretaySchema = new mongoose.Schema({
     default: 'secretary',
 
     },
+    age:{
+      type: Number,
+      required: [true, 'enter your age']
+    },
+    adress: {
+      type: String,
+    },
     created_at: {
         type: Date,
         default: Date.now(),

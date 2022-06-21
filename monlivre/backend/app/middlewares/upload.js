@@ -16,7 +16,7 @@ const upload = multer({
 });
 
 
-const uploads = upload.array('image', 8);
+const uploads = upload.single('image');
 
 export default {
     uploads,

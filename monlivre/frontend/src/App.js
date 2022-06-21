@@ -4,20 +4,40 @@ import './App.css';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Signup from './components/Signup';
 import Login from './components/Login';
+import jwt_decode from 'jwt-decode'
 
 // Dashboard import
-import ContentDashboard from './pages/Dashboard/ContentDash';
-import Secretary from './pages/Secretary'
-import Admins from './pages/Admins'
-import Book from './pages/Books'
-import Profile from './pages/Profile'
+import ContentDashboard from './pages/Admin/Dashboard/ContentDash';
+import Secretary from './pages/Admin/Secretary'
+import Admins from './pages/Admin/Admins'
+import Book from './pages/Admin/Books'
+import ProfileSecretary from './pages/Secretary/Profile'
+import ProfileAdmin from './pages/Admin/Profile'
 
-import Clients from './pages/Clients';
+import SecretaryRoutes from './components/Secretary/ProtectedRouts.js';
+import ProtoctedAdminRoutes from './components/Admin/ProtectedRouts.js';
+
+
+
+import BookSecretary from './pages/Secretary/Books'
+import Clientsecretary from './pages/Secretary/Clients';
+import SecretaryDash from './pages/Secretary/Dashboard/ContentDash';
+import PageNotFound from './pages/PageNotFound'
+
+
+
+import Clients from './pages/Admin/Clients';
 
 
 // Home import
+let user
+const token = JSON.parse(localStorage.getItem('name')) 
+if(token) {
+  user = jwt_decode(token)
+}
+else {user = {}}
 
-import jwt_decode from "jwt-decode";
+
 
 function App() {
           
@@ -29,23 +49,27 @@ function App() {
    <BrowserRouter>
 
     <Switch>
-      
-      {/* <Route exact path="/" component={Home} /> */}
-
-          <Route exact path="/dashboard" component={ContentDashboard} />
-          <Route path='/dashboard/clients' component={Clients} />
-          <Route path='/dashboard/secretary' component={Secretary} />
-          <Route path='/dashboard/admins' component={Admins} />
-          <Route path='/dashboard/books' component={Book} />
-          <Route path='/dashboard/profile' component={Profile} />
+      <Route path="/404" component={PageNotFound}/>
+      <Route exact path="/register" component={Signup} />
+      <Route exact path="/login" component={Login} />
 
 
+          <ProtoctedAdminRoutes exact path="/admin/dashboard" role={user.role} component={ContentDashboard} />
+          <ProtoctedAdminRoutes path="/admin/dashboard/clients" role={user.role} component={Clients} />
+          <ProtoctedAdminRoutes path="/admin/dashboard/secretary" role={user.role} component={Secretary} />
+          <ProtoctedAdminRoutes path="/admin/dashboard/admins" role={user.role} component={Admins} />
+          <ProtoctedAdminRoutes path="/admin/dashboard/books" role={user.role} component={Book} />
+          <ProtoctedAdminRoutes path="/admin/dashboard/profile" role={user.role} component={ProfileAdmin} />
+   
+
+          <SecretaryRoutes exact path="/secretary/dashboard" role={user.role} component={SecretaryDash} />
+          <SecretaryRoutes path="/secretary/dashboard/books" role={user.role} component={BookSecretary} />
+          <SecretaryRoutes path="/secretary/dashboard/profile" role={user.role} component={ProfileSecretary} />
+          <SecretaryRoutes path="/secretary/dashboard/clients" role={user.role} component={Clientsecretary} />
 
 
 
-      
-        <Route exact path="/register" component={Signup} />
-        <Route exact path="/login" component={Login} />
+        
       
           </Switch>
 

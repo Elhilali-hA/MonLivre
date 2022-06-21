@@ -15,7 +15,7 @@ class Server {
         this.app.use(cors())
         this._setupRoutes();
         this._listen();
-        this.app.use("/images", express.static("./images"));
+        this.app.use(express.static("images"));
 
     }
 

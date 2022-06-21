@@ -10,7 +10,6 @@ const usersSchema = new mongoose.Schema({
   }, 
   email: {
     type: String,
-    // validate: ['Please enter a valid email'],
     required: [true, 'user must have a email'],
     unique: true,
   },
@@ -19,6 +18,13 @@ const usersSchema = new mongoose.Schema({
     required: [true, 'user must have a password'],
     minlength: 8,
     select: false,
+  },
+  age:{
+    type: Number,
+    required: [true, 'enter your age']
+  },
+  adress: {
+    type: String,
   },
   role: {
     type: String,

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import arrayValidator from 'mongoose-array-validator'
+
 
 
 const BooksSchema = new mongoose.Schema({
@@ -23,15 +23,7 @@ const BooksSchema = new mongoose.Schema({
     required: [true, 'book must have a type']
   },
   image: {
-    type: Array,
-    minItems: {
-        value: 1,
-        message: props => `length of \`${props.path}\` (${props.value.length}) is less than allowed!`
-    },
-    maxItems: {
-        value: 8,
-        message: props => `length of \`${props.path}\` (${props.value.length}) is more than allowed!`
-    },
+    type: String,
     required: [true, 'book must have a img'],
   },
   status: {
@@ -49,6 +41,5 @@ const BooksSchema = new mongoose.Schema({
 });
 
 
-BooksSchema.plugin(arrayValidator);
 
 export default BooksSchema;

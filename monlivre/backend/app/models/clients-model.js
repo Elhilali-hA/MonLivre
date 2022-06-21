@@ -20,6 +20,13 @@ const ClientSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
+  age:{
+    type: Number,
+    required: [true, 'enter your age']
+  },
+  adress: {
+    type: String,
+  },
   role: {
     type: String,
     required: false,
