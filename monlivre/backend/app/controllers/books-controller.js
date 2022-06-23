@@ -36,13 +36,9 @@ class BooksController {
     }
 
     async createBook(req, res) {
+        console.log(req.file)
         try {
-            // let images = []
-            // let uploadedImages = req.files
-            // for (let uploadedImage of uploadedImages) {
-            //     images.push(uploadedImage.filename)
-            // }
-            // console.log(uploadedImages);
+
             const {file} = req
             
             const newBook = await models.books.create({ 
@@ -51,7 +47,7 @@ class BooksController {
             description: req.body.description,
             type: req.body.type,
             status: req.body.status,
-            image: (file && file.filename) || null,
+            image: (file && file.filename) ,
 
             });
             newBook.save().then(result =>{
@@ -74,11 +70,7 @@ class BooksController {
 
     async updateBook(req, res) {
         try {
-            let images = []
-            const uploadedImages = req.files
-            for (const uploadedImage of uploadedImages) {
-                images.push(uploadedImage.filename)
-            }
+            
             // const {title,description,price, type, status} = req.body
             const books = await models.books.updateOne(req.params.id, req.body)
 

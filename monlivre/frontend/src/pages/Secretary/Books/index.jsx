@@ -10,7 +10,7 @@ const index = () => {
     <>
       <Navbar />
 
-      <div className='clients'>
+      <div className='container-fluid'>
       <Book />
       </div>
     </>

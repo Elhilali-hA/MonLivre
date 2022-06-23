@@ -1,13 +1,30 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import SearchBar from '../SearchBar/Search'
+import SearchClient from '../SearchBar/SearchClient'
 
 
 
 function CreateReservation() {
 
+  const ClientURL = "http://localhost:5000/api/clients";
+
+  let [Clients, setClients] = useState([])
+  async function getClient(){
+
+    let res = await axios.get(ClientURL, { headers: {"Authorization" : `Bearer ${token}`} })
+    let cli = await res.data
+    if(cli){
+      setClients(cli.clients);
+    }
+    }
+
+
+
     let [books, setbooks] = useState([])
     const  [selectedBook, setSelectedBook] = useState("")
+    const  [selectedClient, setSelectedClient] = useState("")
+
 
     const BookURL = "http://localhost:5000/api/books";
 
@@ -22,6 +39,7 @@ function CreateReservation() {
 
 
         useEffect( () => {
+          getClient()
             getBook()
         },[])
 
@@ -64,23 +82,22 @@ function CreateReservation() {
 
   useEffect(() => {
     set_addreservations(prev => {return { ...prev, bookId: selectedBook}});
-  }, [selectedBook])
+  }, [selectedBook, ])
 
-console.log(selectedBook, "selected id")
+  useEffect(() => {
+    set_addreservations(prev => {return { ...prev, clientId: selectedClient}});
+  }, [selectedClient])
+
   return (
     <>
     <form className="p-2" onSubmit={handleSubmit} encType="multipart/form-data">
-     <SearchBar setSelectedBook={setSelectedBook}  data={books}  onChange={handleChage}   name="bookId" placeholder='book title ...' /> 
+     <SearchBar setSelectedBook={setSelectedBook}  data={books}  onChange={handleChage} placeholder='book title ...' /> 
 
    
     <div className="form-group ">
       <label htmlFor="inputclient4">Client</label>
-      <textarea  type="text"
-            placeholder="client"
-            name="clientId"
-            onChange={handleChage}
-            value={set_addreservations.clientId}
-            required className="form-control" id="inputclientId4" />
+     <SearchClient setSelectedClient={setSelectedClient}  data={Clients}  onChange={handleChage}  placeholder='user name ...' /> 
+      
     </div>
   
   <div className="form-group">

@@ -4,8 +4,8 @@ import * as FaIcons  from "react-icons/fa";
 import * as BsIcons from "react-icons/bs";
 import * as GrIcons from "react-icons/gr";
 import { Button, Modal, Card } from 'react-bootstrap';
-import Addbook from './CreateReser';
-import Updatebook from './UpdateReser';
+import AddReserv from './CreateReser';
+import UpdateReserv from './UpdateReser';
 import Swal from 'sweetalert2'
 
 
@@ -72,16 +72,16 @@ function ShowReservations() {
 
 
 const data = Reservations.map((reservation, index) => {
+
   return(
     
-      <div className="card" key={index} style={{width: '18rem'}}>
-  <img className="card-img-top"  alt="Card image cap" />
-  <div className="card-body">
-    <h5 className="card-title">title : {reservation.bookId}</h5>
-    <p className="card-text">{reservation.clientId}</p>
+      <div className="card " key={index} style={{width: '18rem'}}>
+  <div className="card-body bg bg-white">
+    <h5 className="card-title">title : {reservation.bookId.title}</h5>
+    <p className="card-text">{reservation.clientId.name}</p>
     <p className="card-text">{reservation.status}</p>
-    <p className="card-text">{reservation.date_from}$</p>
-    <p className="card-text">{reservation.date_to}$</p>
+    <p className="card-text">{reservation.date_from}</p>
+    <p className="card-text">{reservation.date_to}</p>
 
       <Button size="sm"  variant="info" onClick={()=>handleUpdate(reservation)}>
             <GrIcons.GrUpdate size="10"  />
@@ -127,7 +127,7 @@ const data = Reservations.map((reservation, index) => {
           <Modal.Title>Add Reservations</Modal.Title>
         </Modal.Header>
 
-        <Addbook Close={handleClose}/>
+        <AddReserv Close={handleClose}/>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseU}>
@@ -142,7 +142,7 @@ const data = Reservations.map((reservation, index) => {
           <Modal.Title>Update Reservation</Modal.Title>
         </Modal.Header>
 
-        {/* <Updatebook data={}  Close={handleCloseU}/> */}
+        <UpdateReserv data={reservation}  Close={handleCloseU}/>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseU}>

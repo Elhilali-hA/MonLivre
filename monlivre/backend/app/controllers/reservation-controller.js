@@ -19,10 +19,9 @@ class ReservationController {
 
     async getReservations(req, res) {
         try {
-            const reservations = await models.reservation.find();
+            const reservations = await models.reservation.find().populate('bookId').populate('clientId');
             res.status(202).json({
-                status: 'success',
-                
+                status: 'success', 
                     reservations,
                 
             });

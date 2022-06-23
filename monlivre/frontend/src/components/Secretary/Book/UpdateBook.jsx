@@ -18,9 +18,9 @@ function UpdateBook({data, Close}) {
     
   const token = JSON.parse(localStorage.getItem('name'));
 
-    const baseURL = `http://localhost:3000/api/books/up`
+    const baseURL = `http://localhost:5000/api/books`
     
-      const updaterestaurant =(e)=>{
+      const updatebook =(e)=>{
           e.preventDefault();
           try{
 
@@ -28,7 +28,7 @@ function UpdateBook({data, Close}) {
                 
               Swal.fire(
                 'Done !',
-                'You update a restaurant!',
+                'You update a book!',
                 'success'
                 )
                 Close();
@@ -55,7 +55,7 @@ function UpdateBook({data, Close}) {
   return (
 
     <>
-     <form className="p-2"  onSubmit={updaterestaurant}>
+     <form className="p-2"  onSubmit={updatebook}>
   <div className="form-row">
     <div className="form-group col-md-3">
       <label htmlFor="title">title</label>

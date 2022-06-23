@@ -26,4 +26,6 @@ const ReseravtionSchema = new mongoose.Schema({
 ,{timestamps: true}
 )
 
+
+
 export default ReseravtionSchema;

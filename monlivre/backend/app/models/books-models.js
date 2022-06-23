@@ -10,7 +10,6 @@ const BooksSchema = new mongoose.Schema({
   }, 
   description: {
     type: String,
-    // validate: ['Please enter a valid email'],
     required: [true, 'book must have a description'],
     unique: true,
   },
@@ -24,7 +23,7 @@ const BooksSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: [true, 'book must have a img'],
+
   },
   status: {
     type: String,
@@ -40,6 +39,12 @@ const BooksSchema = new mongoose.Schema({
     
 });
 
+BooksSchema.virtual('reservation', {
+  ref: 'reservation',
+  localField: '_id',
+  foreignField: 'bookId',
+  justOne: true
+});
 
 
 export default BooksSchema;

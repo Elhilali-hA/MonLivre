@@ -72,11 +72,11 @@ function ShowBooks() {
 
 
 const data = books.map((book, index) => {
-  let src = 'http://localhost:3000/images/' + book.image
+ console.log( 'img', book.image)
   return(
     
-      <div className="card" key={index} style={{width: '18rem'}}>
-  <img className="card-img-top"  src={src} alt="Card image cap" />
+      <div className="card" key={index} style={{width: '20rem',marginLeft: '12px', marginTop: '12px'}}>
+  <img className="card-img-top"  src={'http://localhost:5000/images/' + book.image} alt="Card image cap" />
   <div className="card-body">
     <h5 className="card-title">title : {book.title}</h5>
     <p className="card-text">{book.description}</p>
@@ -114,9 +114,12 @@ const data = books.map((book, index) => {
      
   
 
-          <div className="col-md-12 mt-5 d-flex justify-content-around">
+          <div className="container mt-5">
+            <div className="row"> 
 
     {data}
+            </div>
+
           </div>
     
   </div>

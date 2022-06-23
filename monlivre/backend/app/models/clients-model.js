@@ -54,4 +54,10 @@ ClientSchema.pre('save', async function(next) {
     }
 });
 
+ClientSchema.virtual('reservation', {
+  ref: 'reservation',
+  localField: '_id',
+  foreignField: 'clientId',
+});
+
 export default ClientSchema;

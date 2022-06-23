@@ -3,7 +3,7 @@ import "./Search.css";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 
-function SearchBar({ placeholder, data , setSelectedBook}) {
+function SearchClient({ placeholder, data , setSelectedClient}) {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
 
@@ -11,7 +11,7 @@ function SearchBar({ placeholder, data , setSelectedBook}) {
     const searchWord = event.target.value;
     setWordEntered(searchWord);
     const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
+      return value.name.toLowerCase().includes(searchWord.toLowerCase());
     });
 
     if (searchWord === "") {
@@ -47,12 +47,12 @@ function SearchBar({ placeholder, data , setSelectedBook}) {
       {filteredData.length !== 0 && (
         <div className="dataResult">
 
-            <select  className="custom-select" name="bookId" onChange={(e) => setSelectedBook(e.target.value)}>
+            <select  className="custom-select" onChange={(e) => setSelectedClient(e.target.value)}>
           {filteredData.slice(0, 15).map((value, i) => {
-              console.log(typeof(value._id))
+              console.log(value._id)
             return (
-              <option key={i} value={value._id} >
-                {value.title} 
+              <option key={i} value={value._id}  >
+                {value.name} 
               </option>
             );
         })} 
@@ -63,4 +63,4 @@ function SearchBar({ placeholder, data , setSelectedBook}) {
   );
 }
 
-export default SearchBar;
+export default SearchClient;

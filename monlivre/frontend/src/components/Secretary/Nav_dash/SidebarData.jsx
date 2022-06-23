@@ -24,6 +24,12 @@ export const SidebarData = [
     icon : <FaIcons.FaBed />
   },
   {
+    title: 'Reservations',
+    path: '/secretary/dashboard/reservation',
+    cName: 'nav-text',
+    icon : <FaIcons.FaBed />
+  },
+  {
     title: 'Profile',
     path: '/secretary/dashboard/profile',
     cName: 'nav-text',
