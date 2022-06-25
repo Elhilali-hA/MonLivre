@@ -24,6 +24,7 @@ import Clientsecretary from './pages/Secretary/Clients';
 import SecretaryDash from './pages/Secretary/Dashboard/ContentDash';
 import Reservation from './pages/Secretary/Reservation'
 import PageNotFound from './pages/PageNotFound'
+import Home from './pages/Home/Products'
 
 
 
@@ -50,7 +51,9 @@ function App() {
    <BrowserRouter>
 
     <Switch>
+      <Route exact path="/" component={Home}/>
       <Route path="/404" component={PageNotFound}/>
+
       <Route exact path="/register" component={Signup} />
       <Route exact path="/login" component={Login} />
 

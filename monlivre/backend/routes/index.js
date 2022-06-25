@@ -5,6 +5,7 @@ class Router {
   constructor() {
     this.router = express.Router();
     this.apiRoutes = apiRoutes;
+    this.app = express();
   }
 
   create(app) {
@@ -35,6 +36,8 @@ class Router {
   _attachMiddleware() {
     this.router.use(express.json());
     this.router.use(express.urlencoded({ extended: false }));
+    this.app.use(express.static('public')); 
+        this.app.use('/images', express.static('images'));
   }
 
   _handlePageNotFound() {

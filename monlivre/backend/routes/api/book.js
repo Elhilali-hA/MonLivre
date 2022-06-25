@@ -6,13 +6,7 @@ import upload from '../../app/middlewares/upload.js';
 
 export default {
   group: {
-    prefix: '/books',
-    middlewares: [
-        auth,
-        function (req, res, next) {
-          authrization(req, res, next, 'admin', 'secretary');
-        }
-      ],
+    prefix: '/books', 
   },
 
   routes: [
@@ -24,7 +18,11 @@ export default {
     {
       method: 'post',
       path: '/',
-      middlewares: [upload.uploads],
+      middlewares: [auth,
+        function (req, res, next) {
+          authrization(req, res, next, 'admin', 'secretary');
+        },
+        upload.uploads],
       handler: BookController.createBook,
     },
     {
@@ -35,11 +33,23 @@ export default {
     {
       method: 'put',
       path: '/:id',
+      middlewares: [
+        auth,
+        function (req, res, next) {
+          authrization(req, res, next, 'admin', 'secretary');
+        }
+      ],
       handler: BookController.updateBook,
     },
     {
       method: 'delete',
       path: '/:id',
+      middlewares: [
+        auth,
+        function (req, res, next) {
+          authrization(req, res, next, 'admin', 'secretary');
+        }
+      ],
       handler: BookController.deleteBook,
     },
 
